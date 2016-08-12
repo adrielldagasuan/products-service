@@ -37,10 +37,6 @@
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
       name : "products-cluster"
       state : present
-  - name: "Deregister latest revision"
-    ecs_taskdefinition:
-      family: products-service-family
-      state: absent
   - name: Create task definition
     ecs_taskdefinition:
       aws_access_key: "{{lookup('env','ACCESS_ID')}}"
