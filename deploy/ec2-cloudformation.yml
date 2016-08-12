@@ -49,6 +49,7 @@
     ecs_taskdefinition:
       family: products-service-family
       state: absent
+      revision: {{active_revision}}
   - name: Create task definition
     ecs_taskdefinition:
       aws_access_key: "{{lookup('env','ACCESS_ID')}}"
