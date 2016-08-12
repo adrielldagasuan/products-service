@@ -39,7 +39,7 @@
       state : present
   - name: "Check latest revision"
     ecs_taskdefinition:
-      family: restify-test-taskdef
+      family: products-service-family
       state: present
     register: task_output
   - name: "Set fact"
@@ -47,7 +47,7 @@
     when: task_output.taskdefinition.revision is defined
   - name: "Deregister latest revision"
     ecs_taskdefinition:
-      family: restify-test-taskdef
+      family: products-service-family
       state: absent
       revision: "{{active_revision}}"
   - name: Create task definition
