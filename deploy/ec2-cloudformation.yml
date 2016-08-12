@@ -45,7 +45,7 @@
       - name: restify-test
         cpu: 10
         essential: true
-        image: "adrielldagasuan/products-service"
+        image: "adrielldagasuan/products-service:{{lookup('env','CIRCLE_SHA1')}}"
         memory: 300
         portMappings:
         - containerPort: 3000

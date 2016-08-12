@@ -20,7 +20,7 @@ dependencies:
     # set NPM registry
     - npm set registry https://registry.npmjs.org/
     # build image
-    - docker build --no-cache -t adrielldagasuan/products-service .
+    - docker build --no-cache -t adrielldagasuan/products-service:$CIRCLE_SHA1 .
     - npm install
 
 test:
@@ -36,7 +36,7 @@ deployment:
       # push to docker hub
       # - echo "Pushing Docker image to Docker Hub"
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push adrielldagasuan/products-service
+      - docker push adrielldagasuan/products-service:$CIRCLE_SHA1
       # provision EC2 instance
       # - echo "Provisioning EC2 Instance"
       - ansible-playbook deploy/ec2-cloudformation.yml
