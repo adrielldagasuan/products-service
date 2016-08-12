@@ -37,6 +37,19 @@
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
       name : "products-cluster"
       state : present
+  - name: "Check latest revision"
+    ecs_taskdefinition:
+      family: restify-test-taskdef
+      state: present
+    register: task_output
+  - name: "Set fact"
+    set_fact: active_revision={{task_output.taskdefinition.revision}}
+    when: task_output.taskdefinition.revision is defined
+  - name: "Deregister latest revision"
+    ecs_taskdefinition:
+      family: restify-test-taskdef
+      state: absent
+      revision: "{{active_revision}}"
   - name: Create task definition
     ecs_taskdefinition:
       aws_access_key: "{{lookup('env','ACCESS_ID')}}"
@@ -59,6 +72,6 @@
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
       state: present
       name: products-service
-      desired_count : 2
+      desired_count : 1
       cluster: products-cluster
       task_definition: products-service-family

@@ -2,9 +2,6 @@
   "containerDefinitions": [
     {
       "name": "restify-test",
-      "links": [
-        "mysql"
-      ],
       "image": "adrielldagasuan/restify-test",
       "essential": true,
       "portMappings": [
