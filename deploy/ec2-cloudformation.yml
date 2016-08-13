@@ -43,6 +43,7 @@
       desired_count: 0
       cluster: products-cluster
       task_definition: products-service-family
+      state: present
   - name: Delete service
     ecs_service:
       name: products-service
