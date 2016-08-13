@@ -54,6 +54,7 @@
     ecs_taskdefinition:
       aws_access_key: "{{lookup('env','ACCESS_ID')}}"
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
+      revision: "{{active_revision}}"
       containers:
       - name: restify-test
         cpu: 10
@@ -74,4 +75,4 @@
       name: products-service
       desired_count : 1
       cluster: products-cluster
-      task_definition: products-service-family
+      task_definition: "products-service-family:{{active_revision}}"
