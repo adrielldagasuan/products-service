@@ -37,6 +37,11 @@
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
       name : "products-cluster"
       state : present
+  - name: Delete service
+    ecs_service:
+      name: products-service
+      state: absent
+      cluster: products-cluster
   - name: "Check latest revision"
     ecs_taskdefinition:
       family: products-service-family
