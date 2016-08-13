@@ -87,4 +87,4 @@
       name: products-service
       desired_count: 1
       cluster: products-cluster
-      task_definition: "products-service-family:{{active_revision}}"
+      task_definition: "products-service-family"
