@@ -37,6 +37,12 @@
       aws_secret_key: "{{lookup('env','ACCESS_KEY')}}"
       name : "products-cluster"
       state : present
+  - name: update service
+    ecs_service:
+      name: products-service
+      desired_count: 0
+      cluster: products-cluster
+      task_definition: "products-service-family
   - name: Delete service
     ecs_service:
       name: products-service
