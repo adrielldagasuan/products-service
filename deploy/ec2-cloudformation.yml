@@ -70,7 +70,8 @@
   - name: Stop inactive service
     ecs_task:
       task_definition: products-service-family
-      state: absent
+      operation: stop
+      cluster: products-cluster
     register: task_output
   - name: Register service
     ecs_service:
