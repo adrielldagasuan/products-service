@@ -67,6 +67,11 @@
       family: products-service-family
       state: present
     register: task_output
+  - name: Stop inactive service
+    ecs_task:
+      family: products-service-family
+      state: absent
+    register: task_output
   - name: Register service
     ecs_service:
       aws_access_key: "{{lookup('env','ACCESS_ID')}}"
