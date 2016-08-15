@@ -18,7 +18,7 @@ dependencies:
     # Reading the zone from the env var is not working so we set it here
     - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials $CLUSTER_NAME
-    - docker build -t adrielldagasuan/products-service-gke/hello:$CIRCLE_SHA1 .
+    - docker build -t adrielldagasuan/products-service:$CIRCLE_SHA1 .
 
 test:
   post:
@@ -30,6 +30,6 @@ deployment:
     commands:
       #- ./deploy/deploy-gke.sh
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push adrielldagasuan/products-service-gke:$CIRCLE_SHA1
+      - docker push adrielldagasuan/products-service:$CIRCLE_SHA1
       - sudo chown -R ubuntu:ubuntu /home/ubuntu/.kube
       - kubectl patch deployment docker-hello-google -p '{"spec":{"template":{"spec":{"containers":[{"name":"docker-hello-google","image":"docker.io/adrielldagasuan/products-service-gke:'"$CIRCLE_SHA1"'"}]}}}}'
