@@ -4,7 +4,7 @@ machine:
     PROJECT_NAME: microservices-poc
     CLUSTER_NAME: microservices-cluster
     CLOUDSDK_COMPUTE_ZONE: asia-east1-a
-    # GOOGLE_APPLICATION_CREDENTIALS: echo $GCLOUD_SERVICE_KEY | base64 --decode
+    GOOGLE_APPLICATION_CREDENTIALS: ${HOME}/gcloud-service-key.json
   services:
     - docker
 
