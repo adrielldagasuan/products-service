@@ -1,7 +1,7 @@
 # circle.yml file for google cloud deployment
 machine:
   environment:
-    PROJECT_NAME: products-servce-gke
+    PROJECT_NAME: products-service-gke
     CLUSTER_NAME: microservices-cluster
     CLOUDSDK_COMPUTE_ZONE: asia-east1-a
   services:
@@ -13,6 +13,7 @@ dependencies:
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update kubectl
     - echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
     - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud config set project $PROJECT_NAME
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
     # Reading the zone from the env var is not working so we set it here
     - sudo /opt/google-cloud-sdk/bin/gcloud config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
