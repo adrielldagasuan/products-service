@@ -45,7 +45,7 @@ deployment:
   production:
     branch: master
     commands:
-      - ./deploy/deploy.sh
+      - ./deploy/deploy-aws.sh
 
 
 notify:
