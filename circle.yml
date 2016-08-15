@@ -1,6 +1,7 @@
 # circle.yml file for google cloud deployment
 machine:
   environment:
+    PROJECT_NAME: products-servce-gke
     CLUSTER_NAME: microservices-cluster
     CLOUDSDK_COMPUTE_ZONE: asia-east1-a
   services:
