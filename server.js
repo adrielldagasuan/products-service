@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 // MongoDB
 
-mongoose.connect('mongodb://admin:password@ds153835.mlab.com:53835/products-database');
+mongoose.connect('YOURMONGODBHERE');
 
 // Express
 var app = express();
